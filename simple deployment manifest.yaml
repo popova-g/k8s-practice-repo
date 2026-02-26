@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: listener
+  template:
+    metadata:
+      labels:
+        app: listener
+    spec:
+      containers:
+        - name: listener
+          image: shekeriev/k8s-listener
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speaker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speaker
+  template:
+    metadata:
+      labels:
+        app: speaker
+    spec:
+      containers:
+        - name: speaker
+          image: shekeriev/k8s-speaker
